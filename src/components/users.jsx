@@ -1,22 +1,22 @@
 import { h, Component } from "preact";
 import { renderOnRoute, Link } from "preact-routlet";
-import { memoizeFetch } from "../advices"
-import { beforeMethod } from "kaop-ts";
+import axios from "axios";
 
 @renderOnRoute("/users")
 export default class UserComponent extends Component {
 
-  componentWillMount() {
-    this.setState({ users: [] });
-  }
+  state = { users: [] };
 
   componentDidMount() {
-    this.getResource({});
+    this.getResource();
   }
 
-  @beforeMethod(...memoizeFetch("/users"))
   getResource(params, res) {
-    this.setState({ users: res.data });
+    axios({
+      url: 'http://localhost:3000/users'
+    }).then(res => {
+      this.setState({ users: res.data });
+    })
   }
 
   render() {
@@ -26,9 +26,7 @@ export default class UserComponent extends Component {
         <ul>
           {this.state.users.map(user => (
             <li>
-              <Link href={`/user/${user.username}/${user.id}/posts`}>
-                {user.username}
-              </Link>
+              {user.username}
             </li>
           ))}
         </ul>
