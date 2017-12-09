@@ -13,7 +13,7 @@
   "license": "MIT",
   "dependencies": {
     "axios": "^0.17.1",
-    "kaop-ts": "^2.0.0",
+    "kaop-ts": "^3.0.0",
     "preact": "~8.2.6",
     "preact-routlet": "^0.2.0"
   },
