@@ -1,7 +1,7 @@
 import { h, Component } from "preact";
 import { renderOnRoute, Link } from "preact-routlet";
-import { http } from "../advices";
 import { beforeMethod } from "kaop-ts";
+import { http, memoize } from "../advices";
 
 @renderOnRoute("/user/:username/:usid/posts")
 export default class UserPostComponent extends Component {
@@ -14,7 +14,7 @@ export default class UserPostComponent extends Component {
     this.getResource({ userId: this.props.params.usid });
   }
 
-  @beforeMethod(http("/posts"))
+  @beforeMethod(memoize.read, http("/posts"), memoize.write)
   getResource(params, res) {
     this.setState({ posts: res.data });
   }
