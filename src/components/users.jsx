@@ -1,6 +1,7 @@
 import { h, Component } from "preact";
 import { renderOnRoute, Link } from "preact-routlet";
-import axios from "axios";
+import { http } from "../advices";
+import { beforeMethod } from "kaop-ts";
 
 @renderOnRoute("/users")
 export default class UserComponent extends Component {
@@ -10,15 +11,12 @@ export default class UserComponent extends Component {
   }
 
   componentDidMount() {
-    this.getResource();
+    this.getResource({});
   }
 
+  @beforeMethod(http("/users"))
   getResource(params, res) {
-    axios({
-      url: 'http://localhost:3000/users'
-    }).then(res => {
-      this.setState({ users: res.data });
-    })
+    this.setState({ users: res.data });
   }
 
   render() {
