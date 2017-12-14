@@ -16,11 +16,13 @@ How to run the code:
 
 6. `git tag` (you may checkout any tag to understand how the repo was build)
 
-Intro: We're going to see a simple __Preact__ app which will grow a little while the talk to illustrate real problems that may appear in Development Process and how to deal with using modern techniques and tools such as ES7 Decorators.
+##### Intro
 
-Decorators are a feature that allows to nicely call HOF from elsewhere and, modify decorated subjects such as classes or methods. __Say adding behaviors non-invasively__. Decorators are still experimental but they're going to stay here for sure.
+We're going to see a simple __Preact__ app which will grow a little while the talk to illustrate real problems that may appear during the Development Process and how to deal with using modern techniques and tools such as ES7 Decorators.
 
-Decorators provides a nice syntax to allow __Declarative Programming__ and are the natural vehicle of __Inversion of Control__ techniques such as Dependency Injection, Advice Injection, Reflection and so forth.
+Decorators are a feature that allows to nicely call HOF from elsewhere and modify decorated subjects such as classes or methods. __Say add behaviors non-invasively__. Decorators are still experimental but they're going to stay here __because most of modern Frameworks rely on them__.
+
+Decorators provide a nice syntax to allow __Declarative Programming__ and are the natural vehicle of __Inversion of Control__ techniques such as Dependency Injection, Advice Injection, Reflection and so forth.
 
 Today the subject is about dealing with code repetition which is due to some concerns, __often non-functional-concerns__, cannot be modularized in OOP, which means that naturally while the development process some __patterns__ of code, related with the architecture, spread all over the application often hiding what the program is actually trying to do.
 
@@ -65,4 +67,6 @@ Infrastructure patterns may be related to Asynchronous Code Management (such as 
 - v6-non-functional-module
 > Finally our aim is keep code as clean as possible so we try to simplify and modularize our behavior by separating concerns. So we create Aspects which are pieces that enable modularization of concerns, commonly non-functional-requirements
 
-- testing..? These advices are __PURE FUNCTIONS__! EZ
+- Testing..? These advices are __PURE FUNCTIONS__! EZ
+
+- TypeScript heaven... using interfaces to get rid of `hidden patterns`
