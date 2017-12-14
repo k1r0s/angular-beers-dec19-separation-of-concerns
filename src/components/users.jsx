@@ -1,9 +1,12 @@
 import { h, Component } from "preact";
 import { renderOnRoute, Link } from "preact-routlet";
 import { http } from "../advices";
-import { beforeMethod } from "kaop-ts";
+import { beforeMethod, beforeInstance } from "kaop-ts";
+import AxiosProvider from "../axios-provider";
+import { inject } from "kaop";
 
 @renderOnRoute("/users")
+@beforeInstance(inject.assign({ axios: AxiosProvider }))
 export default class UserComponent extends Component {
 
   state = { users: [] };
