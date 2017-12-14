@@ -1,6 +1,7 @@
 import { h, render } from "preact";
 import { RouterOutlet, Link } from "preact-routlet";
 import "./components/users";
+import "./components/posts";
 
 render(
   (<div>
