@@ -28,7 +28,9 @@ export default class UserComponent extends Component {
         <ul>
           {this.state.users.map(user => (
             <li>
-              {user.username}
+              <Link href={`/user/${user.username}/${user.id}/posts`}>
+                {user.username}
+              </Link>
             </li>
           ))}
         </ul>
