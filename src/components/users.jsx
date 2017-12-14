@@ -1,12 +1,9 @@
 import { h, Component } from "preact";
 import { renderOnRoute, Link } from "preact-routlet";
-import { http } from "../advices";
-import { beforeMethod, beforeInstance } from "kaop-ts";
-import AxiosProvider from "../axios-provider";
-import { inject } from "kaop";
+import { fetch } from "../advices";
 
 @renderOnRoute("/users")
-@beforeInstance(inject.assign({ axios: AxiosProvider }))
+@fetch("/users")
 export default class UserComponent extends Component {
 
   componentWillMount() {
@@ -17,7 +14,6 @@ export default class UserComponent extends Component {
     this.getResource({});
   }
 
-  @beforeMethod(http("/users"))
   getResource(params, res) {
     this.setState({ users: res.data });
   }
