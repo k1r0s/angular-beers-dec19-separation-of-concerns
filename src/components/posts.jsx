@@ -1,13 +1,9 @@
 import { h, Component } from "preact";
 import { renderOnRoute, Link } from "preact-routlet";
-import { beforeMethod, beforeInstance } from "kaop-ts";
-import { http, memoize } from "../advices";
-import AxiosProvider from "../axios-provider";
-import StorageProvider from "../storage-provider";
-import { inject } from "kaop";
+import { cachedFetch } from "../advices";
 
 @renderOnRoute("/user/:username/:usid/posts")
-@beforeInstance(inject.assign({ axios: AxiosProvider, storage: StorageProvider }))
+@cachedFetch("/posts")
 export default class UserPostComponent extends Component {
 
   state = { posts: [] };
@@ -16,7 +12,6 @@ export default class UserPostComponent extends Component {
     this.getResource({ userId: this.props.params.usid });
   }
 
-  @beforeMethod(memoize.read, http("/posts"), memoize.write)
   getResource(params, res) {
     this.setState({ posts: res.data });
   }
