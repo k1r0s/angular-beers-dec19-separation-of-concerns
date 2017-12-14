@@ -1,9 +1,13 @@
 import { h, Component } from "preact";
 import { renderOnRoute, Link } from "preact-routlet";
-import { beforeMethod } from "kaop-ts";
+import { beforeMethod, beforeInstance } from "kaop-ts";
 import { http, memoize } from "../advices";
+import AxiosProvider from "../axios-provider";
+import StorageProvider from "../storage-provider";
+import { inject } from "kaop";
 
 @renderOnRoute("/user/:username/:usid/posts")
+@beforeInstance(inject.assign({ axios: AxiosProvider, storage: StorageProvider }))
 export default class UserPostComponent extends Component {
 
   componentWillMount() {

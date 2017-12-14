@@ -1,10 +1,7 @@
-import axios from "axios";
-import storage from "./storage";
-
-export const http = resource => meta => {
+export const http = url => meta => {
   const [params] = meta.args;
-  axios({
-    url: `http://localhost:3000${resource}`,
+  meta.scope.axios({
+    url,
     params
   }).then(res => {
     meta.args = [params, res];
@@ -21,13 +18,13 @@ export const memoize = {
       JSON.stringify(firstArg)
     ].join(":");
 
-    if (storage.get(meta._key)) {
-      meta.args = storage.get(meta._key);
+    if (meta.scope.storage.get(meta._key)) {
+      meta.args = meta.scope.storage.get(meta._key);
       meta.skip();
     }
   },
   write: meta => {
     if(!meta._key) return;
-    storage.set(meta._key, meta.args);
+    meta.scope.storage.set(meta._key, meta.args);
   }
 }
