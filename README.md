@@ -2,6 +2,9 @@
 
 https://www.meetup.com/es-ES/AngularJS-Beers/events/244112055/
 
+[[Youtube] Separation of Concerns in modern Javascript | Ciro Iván Agulló
+](https://www.youtube.com/watch?v=DPJSkpArYK0)
+
 How to run the code:
 
 1. `git clone https://github.com/k1r0s/angular-beers-dec19-separation-of-concerns.git`
